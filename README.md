@@ -1,32 +1,52 @@
 # rememberme
-start-app
-SW중심 사업단 2021-10-29 ~ 2021-10-31
+### Start-App Hackathon 1st Prize:trophy:
+- **Organiser**: National Program of Excellence in Software
+- **Period**: 29th - 31th Oct, 2021
 
-# 맞춤형 복지정책 정보 제공 시스템
+# Customized Welfare Policy Information Provision System
 
 # Outline
-1. 사회적 약자들이 정부 기관에서 운영하는 사업을 접허기 쉽게하는 정보 제공 서비스 앱
-
-# Benefit
-1. 정부 홍보비를 통한 외주비
-2. 정부 사업 자료 대행을 통한 수수료
+1. An information service app that allows the socially underprivileged people to more easily access government-run welfare programmes and policies.
 
 # Progress
-1. 약자마다 카테고리를 나눌 수 있는 메뉴 제공
-2. RecyclerView를 사용하여 정책 정보 출력
-3. 세부사항을 타이핑이나 음성인식 기능을 이용하여 검색할 수 있다.
-4. Reminder기능을 이용하여 알림 푸쉬메시지를 출력
+1. Provide menu UI for underprivileged class.  
+<img src="https://github.com/BanSangSu/rememberme/assets/76412884/e60fe329-5153-4c74-9982-2dcf8d7bc561" 
+alt="menu UI" width="600" />  
+
+3. Show policy information using RecyclerView.  
+<img src="https://github.com/BanSangSu/rememberme/assets/76412884/2c88df0b-2a0d-4abe-9878-f740a901c5d5" 
+alt="policy information using RecyclerView" width="600" />
+
+5. Details can be searched by typing or using voice recognition.  
+<img src="https://github.com/BanSangSu/rememberme/assets/76412884/460fca82-3e3c-4eca-93ea-6c9dafe143b3" 
+alt="search" width="600"  />
+
+7. Alert a notification push message using Reminder function.  
+<img src="https://github.com/BanSangSu/rememberme/assets/76412884/4dce6dd1-37f1-4467-a36d-caa993a1ff81" 
+alt="alert" width="600" />
+
+# Revenue Model
+1. Outsourcing expenses of advertisement from government.
+2. Fees for government programmes and policies materials agency.
 
 # TroubleShooting
-1. 권한에 따라 작성, 보기 기능으로 텍스트를 접할 수 있지만 보기 기능을 사용하면 hyperlink 또한 접근하지 못했다. -> 보기 기능만을 제공해주었다. ->> 보기 layout과 작성 layout를 나눠서 제공해야겠다.
-2. 카테고리를 나누는 과정에서 SQLite를 다루는 DAO부분이나 DTO 부분과 같은 내부 code가 read-only라 변경하지 못하여 DB의 모든 인원들을 세부사항 별로 분류하지는 못했다. -> 남은 DB column을 통해 데이터를 DB에 넣어 놓은 뒤 소수의 인원들을 어느정도만 분류하고, boolean값을 통해 특직을 넘겨주는 기존의 코드를 활용하여 정보를 분산시켰다. ->> Firebase나 개인 DB를 구축하여 생산성과 확장성을 높일 생각이다.
-3. 내무 DB에서 사진이 저장되어 나갔다 들어와도 사라지지는 않았지만 강제로 DB만 따로 빼서 build시키자 사진 데이터만 받아오지 못했다. -> DB를 가져온 다음 사진을 찍어 업로드 했다. ->> 안정적인 DB를 구축하여 외부에서도 여러 컨텐츠를 정확하게(Integrity) 저장하고 사용할 수 있도록 만들어야겠다.
-4. 음성인식기능을 Fragment에 생성하고 정보를 전달하여 외부 아이콘으로 뺄 계획이었다. -> Fragment끼리 정보를 잘 전달하지 못했고, 프로그램 실행에 문제가 생겨 검색기능에서 제공하는 음성인식기능을 사용하였다. ->> 외부 위치로 빼는 것 뿐만 아니라 시각장애인을 위한 UI/UX를 제공할 생각이다.
+1. Depening on permission, I could access the text with the Write and Read modes, but I couldn't access hyperlinks with the Read mode.  
+  -> Only Read mode was provided.  
+   &nbsp; ->> Todo) Make two layout, Read layout and Write layout.  
+2. In the process of classifying categories, internal codes such as the DAO part or DTO part that deal with SQLite were read-only, so it was not possible to classify all classes in the Database in details.  
+  -> We put the data into existing Database columns, classified it to a certain extent, and distributed the information using existing code that passes features through boolean values.  
+   &nbsp; ->> Todo) I plan to increase productivity and scalability by building Firebase of personal DB.  
+3. Even though the images were saved in the internal DB so it did not disappear when I went out and entered, when I forcibly pulled out the DB separately and built it, only the image data was not received.  
+  -> I imported the DB, then took images and uploaded it.  
+  &nbsp; ->> Todo) I need to build a stable DB so that I can accurately store and use various contents externally(Integrity).
+4. The plan was to create a voice recognition function in a fragment and embed it as an external icon.  
+  -> Fragments did not communicate data well with each other, and there were some problems with program execution. So the voice recognition function provided by the search function was used.  
+   &nbsp; ->> Todo) In addition to pulling it out to an external fragment, I plan to provide a UI/UX for the visually impaired.  
 
 # Other future
-1. 사용자의 거주 및 지역 정보를 받아 지역에 따른 사업이나 위치에 따른 혜택 정보를 제공한다.
-2. 사용자의 동의를 얻고 상태 정보를 획득한 뒤 그에 맞는 정보를 제공한다.
-3. Web crawling을 통해 저웁 사업들의 정보를 실시간으로 가져온다.
-4. 혜택을 받는데 필요한 서류와 같은 복잡한 절차를 해소시켜주는 서비스를 제공한다.  
-5. 데이터를 기반으로 사업에 따라 어떤 자료가 필요하고 어떤식으로 준비하면 좋은지 진행 및 추천 방법을 제공한다.
-6. 빅데이터를 통해 헤택을 받는 사람들을의 성향을 파악하여 앞으로의 도시 비용을 예측하고 준비하는 정보 제공서비스를 기관에게 제공한다.
+1. Receive the user's residence and region information and provide benefit information according to the location.
+2. Get the user's consent to obtain user status information, and provide information accordingly.
+3. Bring real-time information on government programmes through Web crawling.
+4. Offer services that cut through the red tape, such as the paperwork required to receive benefits.
+5. Based on the data, it would make recommendations on what materials you need and how to prepare them according to the programme.
+6. Provide information services to organisations to predict and prepare for future city expenses by identifying the features of people who benefit from big data.
